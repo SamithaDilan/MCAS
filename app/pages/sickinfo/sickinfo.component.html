@@ -1,0 +1,292 @@
+
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-8">
+      <div class=" card">
+        <div class=" card-header"><h3 class=" title">Prescription</h3></div>
+        <div class=" card-body">
+          <form [formGroup]="updateInfo">
+            <div class=" row">
+              <div class="col-md-5 pr-md-1" >
+                <div class=" form-group" >
+                   <label>  Registeration No </label>
+                   <input
+                      class=" form-control"
+                      formControlName = "reg_no"
+                     
+                      formControlName="reg_no"
+                      style="color:white;"
+                      placeholder="Company"
+                      type="text"
+                      value = {{patient[0].reg_No}}
+                     
+                    />
+                  </div>
+                </div>
+           
+                <div class="col-md-4 pr-md-1"  >
+                  <div class=" form-group" >
+                    <label> Date </label>
+                        <input
+                        class=" form-control"
+                        formControlName = "date"
+                        
+                        style="color:white;"
+                        placeholder="Company"
+                        type="text"
+                        value={{findAll[0].info[0].date}}
+                    />
+                  </div>
+                </div>
+             
+                <div class=" col-md-3 px-md-1" >
+                  <div class=" form-group">
+                      <label>Body Temperature</label>
+                      <input
+                      class=" form-control"
+                      formControlName = "feaver"
+                      style="color:white;"
+                      placeholder="Company"
+                      type="text"           
+                      value={{findAll[0].info[0].feaver}}
+                      
+                    />
+                  </div>
+                </div>
+            
+              <!-- <div class=" col-md-3 px-md-1">
+                <div class=" form-group"   >
+                
+                  <table>
+                    <thead>
+                    <th># Policy ID</th>
+                    <th>Policy name</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let f of fnd">
+                    <td *ngFor="let t of f.sickness">
+                      {{t}}</td>
+                    
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+              </div> -->
+
+
+              <!-- <div class=" col-md-4 pl-md-1">
+                <div class=" form-group">
+                  <label for="exampleInputEmail1"> Email address </label>
+                  <input
+                    class=" form-control"
+                    
+                    placeholder="mike@email.com"
+                    type="email"
+                  />
+                </div>
+              </div> -->
+            </div>
+            <div class=" row">
+              <div class=" col-md-11 pr-md-1">
+                
+                  <label><h4>Present Complaint</h4></label>
+                  
+                  <ng-multiselect-dropdown
+                  [placeholder]=""
+                  formControlName = "sickness"
+                  [data]="drugs"
+                  name ="sickness"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+                
+              </div>
+              <!-- <div class=" col-md-6 pl-md-1">
+                <div class=" form-group">
+                  <label> Last Name </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Last Name"
+                    type="text"
+                    value="Andrew"
+                  />
+                </div>
+              </div> -->
+            </div>
+            <div formArrayName = 'newsick'>
+                <br>
+              <button class=" btn btn-fill btn-sucess" (click) = "addNew()" > Add new diseases</button>
+              
+              <div class=" row">
+
+              <div *ngFor = "let sick of newsick.controls; let i = index">
+                <div class="col-md-12 pr-md-3">
+                    <br>
+                    <input class=" form-control" type="text" [formControlName] = "i">
+                    <br>
+                </div>
+                  
+              </div>
+              </div>
+
+            </div>
+            <br>
+            <div class=" row">
+                <div class=" col-md-11 pr-md-1">
+                  
+                    <label><h4>Treatment Plan</h4></label>
+                    
+                    <ng-multiselect-dropdown
+                    [placeholder]=""
+                    [data]="drugs"
+                    formControlName = "prescription"
+                    name ="prescription"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                  
+                </div>
+              </div>
+
+
+            <!-- <div class=" row">
+              <div class=" col-md-12">
+                <div class=" form-group">
+                  <label> Address </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Home Address"
+                    type="text"
+                    value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                  />
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class=" row">
+              <div class=" col-md-4 pr-md-1">
+                <div class=" form-group">
+                  <label> City </label>
+                  <input
+                    class=" form-control"
+                    placeholder="City"
+                    type="text"
+                    value="Mike"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4 px-md-1">
+                <div class=" form-group">
+                  <label> Country </label>
+                  <input
+                    class=" form-control"
+                    placeholder="Country"
+                    type="text"
+                    value="Andrew"
+                  />
+                </div>
+              </div>
+              <div class=" col-md-4 pl-md-1">
+                <div class=" form-group">
+                  <label> Postal Code </label>
+                  <input
+                    class=" form-control"
+                    placeholder="ZIP Code"
+                    type="number"
+                  />
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class=" row">
+              <div class=" col-md-8">
+                <div class=" form-group">
+                  <label> About Me </label>
+                  <textarea
+                    class=" form-control"
+                    cols="80"
+                    placeholder="Here can be your description"
+                    rows="4"
+                    value="Mike"
+                  >
+Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
+</textarea
+                  >
+                </div>
+              </div>
+            </div> -->
+          </form>
+        </div>
+        <div class=" card-footer">
+          <button class=" btn btn-fill btn-danger" type="submit" (click)= " updateSickinfo()"  >Save</button>
+        </div>
+      </div>
+    </div>
+    <div class=" col-md-4">
+      <div class=" card card-user">
+        <div class=" card-body">
+          <p class=" card-text"></p>
+          <div class=" author">
+            <div class=" block block-one"></div>
+            <div class=" block block-two"></div>
+            <div class=" block block-three"></div>
+            <div class=" block block-four"></div>
+            <a href="javascript:void(0)">
+              <img alt="..." class=" avatar" src="assets/img/emilyz.jpg" />
+
+              <h3 class=" title">{{patient[0].name}}</h3>
+            </a>
+            <p class=" description">{{patient[0].reg_No}}</p>
+            <p align ="left" class=" description">Sex : {{patient[0].sex}}</p>
+            <p align ="left" class=" description">Residental Address : {{patient[0].raddress}}</p>
+            <p align ="left" class=" description">Permanant Address : {{patient[0].address}}</p>
+            <p align ="left" class=" description" date-format="DD MMMM YYYY">DOB : {{patient[0].dob}}</p>
+            <p align ="left" class=" description">Faculty : {{patient[0].faculty}}</p>
+            <p align ="left" class=" description">Last school attend : {{patient[0].last_school_attend}}</p>
+            <p align ="left" class=" description">Marital Status : {{patient[0].marital_status}}</p>
+            <p align ="left" class=" description">Undergone any operations : {{patient[0].operation}}</p>
+            <p align ="left" class=" description">Suffered illness : </p>
+            <p align ="left" class=" description" *ngFor="let d of patient[0].diseases">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{d}}</p>
+            <p align ="left" class=" description">Parent/Guardian Info : 
+              <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp; {{patient[0].parent.parentName}}
+              <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Mobile No &nbsp; :&nbsp; {{patient[0].parent.pmobile_No}}
+              <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Address &nbsp; &nbsp; &nbsp;: &nbsp;{{patient[0].parent.paddress}}
+            </p>
+
+
+          </div>
+          <!-- <div class=" card-description">
+            Do not be scared of the truth because we need to restart the human
+            foundation in truth And I love you like Kanye loves Kanye I love
+            Rick Owens’ bed design but the back is...
+          </div> -->
+        </div>
+        <div class=" card-footer">
+          <div class=" button-container">
+            <button
+              class=" btn btn-icon btn-round btn-facebook"
+              href="javascript:void(0)"
+            >
+              <i class=" fab fa-facebook"> </i>
+            </button>
+            <button
+              class=" btn btn-icon btn-round btn-twitter"
+              href="javascript:void(0)"
+            >
+              <i class=" fab fa-twitter"> </i>
+            </button>
+            <button
+              class=" btn btn-icon btn-round btn-google"
+              href="javascript:void(0)"
+            >
+              <i class=" fab fa-google-plus"> </i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
